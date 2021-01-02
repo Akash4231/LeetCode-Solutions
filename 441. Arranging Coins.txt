@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int arrangeCoins(int n) {
+       int k, temp;
+    temp = 8*n;
+    temp++;
+    temp = sqrt(temp);
+    temp -= 1;
+    k = temp/2;
+    
+    return k;
+    }
+};

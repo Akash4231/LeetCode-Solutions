@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        //string sub="";
+        int len=magazine.size();
+        
+        if (ransomNote==magazine || ransomNote=="")
+        return true;
+        
+        vector<char> mag;
+        
+        for (int i=0;i<len;i++)
+        {
+            mag.push_back(magazine[i]);
+        }
+        
+        
+        
+        for (int i=0;i<ransomNote.size();i++)
+        {   int flag=0;
+            for (int j=0; j<mag.size();j++)
+            {
+                if (ransomNote[i]==mag[j])
+                {   flag=1;
+                    mag[j]='X';
+                    break;
+                }
+                    
+            }
+         if (flag==0)
+             return false;
+        }
+        return true;
+    }
+};

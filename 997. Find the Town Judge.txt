@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int findJudge(int N, vector<vector<int>>& trust) {
+        
+     bool check [2000]={0};
+        
+        for (int i=0;i<trust.size();i++)
+        {
+            check[trust[i][0]] = 1;
+        }
+        
+        set<int> a;
+        
+        for (int i=1;i<N+1;i++)
+        {   
+            a.clear();
+            
+            if (!check[i])  // means that the element is not present in first column
+            {
+                for (int j=0;j<trust.size();j++)
+                {
+                    if (trust[j][1]==i)
+                        a.insert(trust[j][0]);
+                }
+                if (a.size()==N-1)
+                    return i;
+            }
+        }
+        return -1;
+        
+        
+    }
+};

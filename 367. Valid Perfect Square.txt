@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        
+        for (long long i=1;i<=num;i++)
+        {
+            long long p=i;
+            p=p*i;
+            
+            cout<<p<<"  ";
+            
+            if (p>num)
+               return false;
+            
+            if (p==num)
+                return true;
+        }
+        return false;
+    }
+};

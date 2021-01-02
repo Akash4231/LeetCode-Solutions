@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& a) {
+        
+        if (a.size()==2)
+            return true;
+        
+        int x1= a[0][0];
+        int y1= a[0][1];
+        int x2= a[1][0];
+        int y2= a[1][1];
+        long double slope;
+        
+        if (x2==x1)
+        {
+            for (int i=2;i<a.size();i++)
+            {
+                if (a[i][0]!=x2)
+                    return false;
+            }
+            return true;
+        }
+      
+        else
+        {
+            slope= (y2-y1)/(x2-x1);
+        
+        for (int i=2;i<a.size();i++)
+        {
+            long double x=a[i][0];
+            long double y=a[i][1];
+            
+           long double lhs= y-y1;
+           long double rhs= slope * (x-x1);
+            
+            if (abs(lhs-rhs)>0.1)
+            {
+              return false;
+            }
+            //cout<< (lhs-rhs) <<"   ";
+                
+        }
+        return true;
+        }
+            
+        
+        
+    }
+};

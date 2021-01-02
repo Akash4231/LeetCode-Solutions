@@ -1,0 +1,48 @@
+class Solution {
+public:
+    
+    int newCol;
+    int oldCol;
+    
+    int maxR;
+    int maxC;
+    
+    bool isSafe(int x,int y){
+        if (x<0 || x>=maxR || y<0 || y>=maxC)
+            return false;
+        return true;
+    }
+    
+    
+    
+    void dfs(vector<vector<int>>& image, int x, int y,
+             vector<vector<bool>>& visited){
+        
+        if (!isSafe(x,y))   return;
+        
+        if (visited[x][y] || image[x][y]!=oldCol)
+            return;
+        
+        visited[x][y]=true;
+        
+        dfs(image,x+1,y,visited);
+        dfs(image,x,y+1,visited);
+        dfs(image,x,y-1,visited);
+        dfs(image,x-1,y,visited);
+        
+        image[x][y]=newCol;
+        
+    }
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        newCol=newColor;
+        vector<vector<bool>> visited(image.size(),vector<bool>(image[0].size(),false));
+       // memset(visited,sizeof(visited),false);
+        oldCol=image[sr][sc];
+        maxR=image.size();
+        maxC=image[0].size();
+        dfs(image,sr,sc,visited);
+        return image;
+        
+    }
+};

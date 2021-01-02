@@ -1,0 +1,64 @@
+class Solution {
+public:
+    string addStrings(string a, string b) {
+        reverse(a.begin(),a.end());
+        reverse(b.begin(),b.end());
+        
+        int i=0,j=0;
+        string ans="";
+        int carry=0;
+        while (i<a.length() || j<b.length()){
+            if (i<a.length() && j<b.length()){
+                int t1=a[i]-48;
+                int t2=b[i]-48;
+                
+                t2+=t1+carry;
+                string t3=to_string(t2);
+                if (t3.length()==2){
+                    ans.push_back(t3[1]);
+                    carry=t3[0]-48;
+                }
+                else{
+                    ans.push_back(t3[0]);
+                    carry=0;
+                } 
+                i++;j++;
+            }
+            else if (i<a.length()){
+                int t1=a[i]-48;
+                t1+=carry;
+                string t3=to_string(t1);
+                if (t3.length()==2){
+                    ans.push_back(t3[1]);
+                    carry=t3[0]-48;
+                }
+                else{
+                    ans.push_back(t3[0]);
+                    carry=0;
+                } 
+                
+                i++;
+            }
+            else if (j<b.length()){
+                int t1=b[j]-48;
+                t1+=carry;
+                string t3=to_string(t1);
+                if (t3.length()==2){
+                    ans.push_back(t3[1]);
+                    carry=t3[0]-48;
+                }
+                else{
+                    ans.push_back(t3[0]);
+                    carry=0;
+                } 
+                j++;
+            }
+        }
+        
+        if (carry!=0){
+            ans.push_back(carry+48);
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};

@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+        unordered_multimap <int,int> a;
+        
+        for (int i=0;i<nums.size();i++)
+        {   
+            auto it=a.find(nums[i]);
+            
+            if (it==a.end())
+            a.insert(make_pair(nums[i],1));
+            
+            else
+            {
+                it->second++;
+            }
+        }
+        
+        int len=nums.size()/2;
+        
+        for (auto it=a.begin();it!=a.end();it++)
+        {
+            if (it->second >len)
+                return it->first;
+        }
+        return -1;
+    }
+};

@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        
+        if (s=="")
+            return 0;
+        
+        if (s.length()==1)
+            return 1;
+        
+        unordered_map<char,int> mp;
+        
+        for (int i=97;i<=122;i++)
+            mp[i]=0;
+        
+        int f=0,l=0;
+        int ans=1;
+        int n=s.length();
+        
+        
+        while (l<n){
+          
+          
+            
+          if (mp[s[l]]==0 ){//if not present
+              mp[s[l]]++;
+              ans=max(ans,(l-f+1));
+              l++;
+          } 
+          else{//if already present
+              char cur=s[l];
+              while (mp[s[l]]!=0){
+                  mp[s[f++]]--;
+              }
+          }
+        }
+        
+        return ans;
+    }
+};

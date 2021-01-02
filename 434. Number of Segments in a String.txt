@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int countSegments(string s) {
+        
+        int ans=0;
+        bool seg=false;
+        
+        for (int i=0;i<s.length();i++){
+           if (!seg && s[i]==' ')
+               continue;
+           if (!seg){
+               seg=true;
+               ans++;
+           }
+            else if (seg && s[i]==' ')  seg=false;
+        }
+        return ans;
+        
+    }
+};

@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& a, int target) 
+    {
+        
+        unordered_map<int,int> sum;
+        
+        
+        
+        for (int i=0;i<a.size();i++)
+        {
+            if (sum.find(target-a[i])!=sum.end())
+            {
+                auto it=sum.find(target-a[i]);
+                return {it->second , i};
+            }
+            
+            sum[a[i]]=i;
+        }
+        
+        return {-1};
+        
+    }
+};
